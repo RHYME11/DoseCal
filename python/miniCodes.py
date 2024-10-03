@@ -51,6 +51,22 @@ def get_pdf_file_input(prompt):
 
 
 
+def check_isotope_exists(beam_A, beam_isotope, file_path='../HalfLife/HalfLife.txt'):
+    # Combine the values to create the desired isotope string
+    isotope_to_check = f"{beam_A}{beam_isotope.lower()}"
+
+    # Read the contents of the file
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    # Check for the existence of the isotope in the first column
+    for line in lines:
+        # Split the line into columns based on whitespace
+        columns = line.split()
+        if columns and columns[0].lower() == isotope_to_check:
+            return True  # Found the isotope
+
+    return False  # Isotope not found
 
 
 
