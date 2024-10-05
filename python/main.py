@@ -8,7 +8,9 @@
 from miniCodes import *
 
 print("\nPlease fill info for multiple layer separately!")
+print("Please save associating PACE4 pdf file into PACE4 folder\n")
 
+#===================== Fill Information =========================#
 #========================= Target ===============================#
 While True:
   target_isotope = get_alpha_input("Enter Target Isotope Sympol (eg, Al) = ")
@@ -19,7 +21,7 @@ While True:
     break
   else:
     print(f"{target_A}{target_isotope} doesn't exist. Please fill valid info!")
-#========================== Beam =================================#
+#========================== Beam ================================#
 # When the beam pass the target, the energy will be attenuated 
 # But the beam rate is same 
 While True:
@@ -34,7 +36,7 @@ While True:
   else:
     print(f"{beam_A}{beam_isotope} doesn't exist. Please fill valid info!")
 
-
+#===================== Read PACE4 results ===================#
 
 
 

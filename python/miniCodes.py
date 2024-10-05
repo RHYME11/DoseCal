@@ -1,8 +1,19 @@
+import numpy as np
+import pdfplumber
 import os
+import re
+import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.utils import get_column_letter
+from openpyxl.styles import Font, PatternFill, Border, Alignment
+from pathlib import Path
+#=========================================================================#
+#============= Following mini codes are called in main.py ============#
+#=========================================================================#
 
-#=========================================================================#
-#============= Following mini codes are called in FillInfo.py ============#
-#=========================================================================#
+#=======================================#
+# Check if input contains letters only 
+#=======================================#
 def get_alpha_input(prompt):
     while True:
         user_input = input(prompt)
@@ -10,7 +21,10 @@ def get_alpha_input(prompt):
             return user_input
         else:
             print("Warning: Please enter letters only (no numbers or special characters).")
+
+#=======================================#
 # Function to validate integer input
+#=======================================#
 def get_integer_input(prompt):
     while True:
         user_input = input(prompt)
@@ -19,7 +33,9 @@ def get_integer_input(prompt):
         else:
             print("Warning: Please enter a valid number!")
 
+#=======================================#
 # Function to validate float input
+#=======================================#
 def get_float_input(prompt):
     while True:
         user_input = input(prompt)
@@ -32,6 +48,11 @@ def get_float_input(prompt):
 #=========================================================================#
 #==================== Mini Codes related to Half-Life=====================#
 #=========================================================================#
+
+#=======================================#
+# Check input exists or not
+# Check input is .pdf file
+#=======================================#
 def get_pdf_file_input(prompt):
     while True:
         pdf_path = input(prompt)
@@ -50,7 +71,10 @@ def get_pdf_file_input(prompt):
         return pdf_path
 
 
-
+#=======================================#
+# Check is input is an existing isotope
+# Separate A and Name for two inputs
+#=======================================#
 def check_isotope_exists(beam_A, beam_isotope, file_path='../HalfLife/HalfLife.txt'):
     # Combine the values to create the desired isotope string
     isotope_to_check = f"{beam_A}{beam_isotope.lower()}"

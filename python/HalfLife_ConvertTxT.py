@@ -1,10 +1,10 @@
 #=============================================#
 # Convert Halflife pdf file to txt file
+# It won't over write on the existing txt file
 #=============================================#
 
 from miniCodes import *
-
-pdf_path = get_pdf_file_input("Enter half-life pdf file path: ")
+from tqdm import tqdm
 
 def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
     # Get the base name of the PDF file (without the extension) using string operations
@@ -13,8 +13,9 @@ def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
     txt_path = pdf_path.replace('.pdf', '.txt')
     
     # if txt file exists and don't need to be replaced, return empty
-    if os.path.exists(txt_path) and flag_overwrite:
-        return
+    if os.path.exists(txt_path) and not flag_overwrite:
+      print("Keep the old HalfLife.txt. Bye ~")  
+      return
     # if txt file doesn't exist or you want to overwrite it
     else:
         # Open the PDF file
@@ -22,7 +23,7 @@ def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
             text_to_write = []
             capture_text = False # will be "True" when detect "Nucleus E level(keV) Jπ T 1/2" where start extracting info
             # Iterate through each page
-            for page in pdf.pages:
+            for page in tqdm(pdf.pages, desc="Processing pages", unit="page"):
                 # Extract the text from the page
                 text = page.extract_text() 
                 # Split the text into lines
@@ -53,7 +54,21 @@ def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
         with open(txt_path, "w") as output_file:
             output_file.write("\n".join(text_to_write))
 
-#===========================================================================================================#
+#================================ mian code =======================================#
+
+
+pdf_path = get_pdf_file_input("Enter half-life pdf file path: ")
+txt_path = pdf_path.replace('.pdf', '.txt')
+if os.path.exists(txt_path):
+  overwrite =input(f"{txt_path} exists. Do you want to overwrite it, y/n(default): ")
+  if 'y' in overwrite.lower():
+    flag = True
+  elif 'n' or '' in overwrite.lower():
+    flag = False
+
+Convert_PDF_to_TXT(pdf_path, flag)
+
+
 
 
 
