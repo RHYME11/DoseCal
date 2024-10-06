@@ -2,10 +2,6 @@ import numpy as np
 import pdfplumber
 import os
 import re
-import pandas as pd
-from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
-from openpyxl.styles import Font, PatternFill, Border, Alignment
 from pathlib import Path
 #=========================================================================#
 #============= Following mini codes are called in main.py ============#
@@ -59,12 +55,12 @@ def get_pdf_file_input(prompt):
         
         # Check if the file exists
         if not os.path.exists(pdf_path):
-            print("Warning: The file does not exist. Please enter a valid file path.")
+            print(f"Warning: {prompt} does not exist. Please enter a valid file path.")
             continue
         
         # Check if the file is a PDF by checking its extension
         if not pdf_path.lower().endswith('.pdf'):
-            print("Warning: The file is not a PDF. Please enter a valid PDF file.")
+            print(f"Warning: {prompt} is not a PDF. Please enter a valid PDF file.")
             continue
         
         # If both checks pass, return the file path
@@ -75,7 +71,7 @@ def get_pdf_file_input(prompt):
 # Check is input is an existing isotope
 # Separate A and Name for two inputs
 #=======================================#
-def check_isotope_exists(beam_A, beam_isotope, file_path='../HalfLife/HalfLife.txt'):
+def check_isotope_exists(beam_A, beam_isotope, file_path='HalfLife/HalfLife.txt'):
     # Combine the values to create the desired isotope string
     isotope_to_check = f"{beam_A}{beam_isotope.lower()}"
 

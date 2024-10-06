@@ -52,7 +52,8 @@ def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
                         text_to_write.append(line)
         # Write the captured text to the dynamically named txt file
         with open(txt_path, "w") as output_file:
-            output_file.write("\n".join(text_to_write))
+          output_file.write("#Nucleus E_level Jpi t1/2\n")  
+          output_file.write("\n".join(text_to_write))
 
 #================================ mian code =======================================#
 

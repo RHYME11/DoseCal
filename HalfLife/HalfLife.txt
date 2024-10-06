@@ -1,3 +1,4 @@
+#Nucleus E_level Jpi t1/2
 1NN 0.0 1/2+ 613.9 s 6
 1H 0.0 1/2+ STABLE
 2H 0 1+ STABLE
