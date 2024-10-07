@@ -89,6 +89,21 @@ def check_isotope_exists(beam_A, beam_isotope, file_path='HalfLife/HalfLife.txt'
     return False  # Isotope not found
 
 
-
+#=============================================================#
+#============= convert all half-lives to seconds =============#
+#=============================================================#
+def HalfLife_Unit_Factor(unit):
+    fac = 0
+    if unit == "s":
+        fac = 1;
+    if unit == "m":
+        fac = 60;
+    if unit == "h":
+        fac = 60*60;
+    if unit == "d":
+        fac = 24*60*60;
+    if unit == "y":
+        fac = 365*24*60*60;
+    return fac
 
 

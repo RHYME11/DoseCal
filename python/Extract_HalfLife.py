@@ -65,35 +65,37 @@ def append_half_life_to_production(production_record, half_life_data):
 
     if len(matching_half_lives) == 1:
       # If there is only one match, append it to the production record
-      production_record[i].append(f"{matching_half_lives[0][2]}")  # t1/2 value
-      production_record[i].append(f"{matching_half_lives[0][3]}")  # t1/2 unit
+      production_record[i].append(float(matching_half_lives[0][2]))  # t1/2 value as float
+      production_record[i].append(f"{matching_half_lives[0][3]}")  # t1/2 unit (as string)
 
     elif len(matching_half_lives) > 1:
       # If there are multiple matches (isomer case)
       # Append the first match to the current row
-      production_record[i].append(f"{matching_half_lives[0][2]}")  # t1/2 value
-      production_record[i].append(f"{matching_half_lives[0][3]}")  # t1/2 unit
+      production_record[i].append(float(matching_half_lives[0][2]))  # t1/2 value as float
+      production_record[i].append(f"{matching_half_lives[0][3]}")  # t1/2 unit (as string)
 
       # Create a copy of the current row for the isomer and append the second half-life
       isomer_row = production_record[i][:]  # Copy the row
-      isomer_row[3] = f"{isotope}_isomer"  # Change isotope to "isotope_isomer"
-      isomer_row.append(f"{matching_half_lives[1][2]}")  # 2nd t1/2 value
-      isomer_row.append(f"{matching_half_lives[1][3]}")  # 2nd t1/2 unit
+      isomer_row[3] = f"{isotope}_m"  # Change isotope to "isotope_isomer"
+      
+      # Remove the first t1/2 value and unit (we are modifying the last two elements)
+      isomer_row[-2] = float(matching_half_lives[1][2])  # 2nd t1/2 value as float
+      isomer_row[-1] = f"{matching_half_lives[1][3]}"  # 2nd t1/2 unit (as string)
 
       # Insert the isomer row into the production record
       production_record.insert(i + 1, isomer_row)
 
       # Move the index to skip the newly inserted isomer row
       i += 1
+
     else:
       # If no match found, append "N/A"
       production_record[i].append("N/A")
       production_record[i].append("N/A")
-    
+
     i += 1
 
   return production_record
- 
 
 
 

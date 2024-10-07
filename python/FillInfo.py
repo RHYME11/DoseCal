@@ -7,7 +7,7 @@
 
 from miniCodes import *
 
-#===================== Fill Information =========================#
+#===================== Fill Information for main.py  ========================#
 def FillInfo():
   print("# ==================================== #")
   print("# ===== Step1: Fill Information ====== #")                                                                                            

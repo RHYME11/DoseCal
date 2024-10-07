@@ -53,11 +53,8 @@ The following Python libraries are required to run the current code:
 
 ### Step3: Extract halflife for isotopes from HalfLife.txt
 
-### Step4: Generate Stopping ratios:
-Now, there is no convenient way to generate stopping ratios for all production isotopes, except SRIM which needs to calculate one by one.</br>
-Now assume all production will be stopped in the target, returning higher radiation dose.
-
-### Step5: Calculate production rate (pps) for each isotope
+### Step4: Calculations: 
+#### Production rate (pps) for each isotope
 - Need:
   - xsec in `mb` (read from PACE4 file)
   - target thickness in `mg/cm2` (from input in Step1)
@@ -65,11 +62,23 @@ Now assume all production will be stopped in the target, returning higher radiat
     - mass number ~= molar mass
   - beam rate in `pps` (from input in Step1)
 
+#### Activity (Bq) for each isotope
+
+### Step5: Write information into txt file
+---
+
+
+## \*Generate Stopping ratios:
+Now, there is no convenient way to generate stopping ratios for all production isotopes, except SRIM which needs to calculate one by one.</br>
+Now assume all production will be stopped in the target (stopping_ratio = 1), returning higher radiation dose.</br>
+The stopping ratio is not considered in calculations in main.py, but will be generated in txt file which is returned after running main.py</br>
+* You can edited it manually in the file, which will effect the future calcualtions in summary.py
+
+---
 
 
 
-
-
+## Run summarize.py
 
 
 
