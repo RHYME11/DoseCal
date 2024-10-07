@@ -106,4 +106,35 @@ def HalfLife_Unit_Factor(unit):
         fac = 365*24*60*60;
     return fac
 
-
+#=============================================================#
+#============= convert seconds to different time unit =============#
+#=============================================================#
+def Time_Seconds_Unit(seconds):
+    if seconds >= 31536000:
+      unit = 'y'
+      if seconds%3153600 == 0:
+        time = int(seconds%3153600)
+      else:
+        time = round(float(seconds/3153600),1)
+    elif seconds >= 86400:
+      unit = 'd'
+      if seconds%86400 == 0:
+        time = int(seconds/86400)
+      else:  
+        time = round(float(seconds/86400),1)
+    elif seconds >= 3600:
+      unit = 'h'
+      if seconds%3600 == 0:
+        time = int(seconds/3600)
+      else:
+        time = round(float(seconds/3600),1)
+    elif seconds >= 60:
+      unit = 'm'
+      if seconds%60 == 0:
+        time = int(seconds/60)
+      else:
+        time = round(float(seconds/60),1)
+    else:
+      unit = 's'
+      time = int(seconds)
+    return time, unit

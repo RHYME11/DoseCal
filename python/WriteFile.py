@@ -1,4 +1,5 @@
 import os
+import re
 
 #== miniCode: 
 # change al or AL =>Al
@@ -75,11 +76,73 @@ def write_to_txt(production_record, beam_isotope, beam_A, target_isotope, target
 
 
 
+# =========== Run in the end of summarize.py =========#
+# Write dose into individual txt files based on cd time
+def write_dose_lists_to_files(dose_lists):
+  for dose_list in dose_lists:
+    # Extract the 'Prodx_A(Bq)' header to create the filename
+    header = dose_list[0]
+    cd_value = header[4]  # Extract the 'Prodx_A(Bq)@cd=X' part
 
+    # Extract only the part after 'cd=' using a regular expression
+    cd_value_cleaned = re.search(r'cd=.*', cd_value).group()  # Get only 'cd=X'
+    
+    # Format the filename to include only underscores as special characters
+    cd_value_cleaned = re.sub(r'[^\w\s]', '_', cd_value_cleaned)  # Replace non-alphanumeric characters with '_'
+    filename = f"{cd_value_cleaned}.txt"
 
+    # Write the content to the file
+    with open(filename, 'w') as file:
+      for row in dose_list:
+        # Round numeric values under 'Prodx_A(Bq)' and dose columns to 2 decimal places
+        rounded_row = [
+          f"{x:.2f}" if isinstance(x, (float, int)) and idx >= 4 else str(x)
+          for idx, x in enumerate(row)
+        ]
+        # Convert each row into a string of tab-separated values and write to the file
+        file.write('\t'.join(map(str, rounded_row)) + '\n')
 
+# =========== Run in the end of summarize.py =========#
+# Write all sum values in "summary.txt"
+def write_summary_file(dose_lists):
+  # Initialize summary content
+  summary_rows = []
 
+  # Build summary header dynamically based on dose_list[0]
+  first_dose_list = dose_lists[0][0]  # Header of the first dose_list
+  summary_header = ['cd'] + first_dose_list[5:]  # Collect all headers starting from column 5
 
+  for dose_list in dose_lists:
+    # Extract the 'Prodx_A(Bq)@cd=X' part to determine the cd value
+    header = dose_list[0]
+    cd_value = header[4]  # 'Prodx_A(Bq)@cd=X'
+
+    # Extract the part after 'cd=' to get the actual cd value (e.g., '1.5m')
+    cd_value_cleaned = cd_value.split('cd=')[-1]  # Extract part after 'cd='
+
+    # Initialize a row for the summary
+    summary_row = [cd_value_cleaned]
+    dose_sums = [0] * (len(header) - 5)  # To store sums for each dose type, starting from column 6
+
+    # Iterate through the dose_list and find the 'sum' row
+    for row in dose_list:
+      # If the row is the 'sum' row, collect the dose values for summary
+      if row[0] == 'sum':
+        for i in range(len(dose_sums)):
+          dose_sums[i] = round(row[i + 5], 2)  # Collect sum values for each dose
+
+    # Append the dose sums to the summary row
+    summary_row.extend([str(dose) for dose in dose_sums])
+    summary_rows.append(summary_row)
+
+  # Write the summary file
+  with open("summary.txt", 'w') as summary_file:
+    # Write the header
+    summary_file.write('  '.join(summary_header) + '\n')
+
+    # Write each summary row
+    for summary_row in summary_rows:
+      summary_file.write('  '.join(summary_row) + '\n')
 
 
 
