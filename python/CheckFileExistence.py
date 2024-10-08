@@ -10,11 +10,11 @@ def Prepare():
   # List of files to check
   files_to_check = [
       "HalfLife/HalfLife.txt",
-      "DoesParFiles/Body_unshield.txt",
-      "DoesParFiles/Body_shield.txt",
-      "DoesParFiles/Skin_unshield.txt",
-      "DoesParFiles/Skin_shield.txt",
-      "DoesParFiles/Breath_Par.txt"
+      "DoseParFiles/Body_unshield.txt",
+      "DoseParFiles/Body_shield.txt",
+      "DoseParFiles/Skin_unshield.txt",
+      "DoseParFiles/Skin_shield.txt",
+      "DoseParFiles/Breath_Par.txt"
   ]
 
   # List to store missing files
