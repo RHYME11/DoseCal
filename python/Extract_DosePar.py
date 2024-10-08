@@ -17,6 +17,7 @@ def Does_Path(path_num):
 
 def get_dose_input():
   # Function to handle input and validation
+  
   while True:
     dose_input = input("Please choose a Dose type (1-5): ").strip()
     if dose_input.isdigit() and Does_Path(dose_input):  # Check if valid number and valid dose file
@@ -25,6 +26,12 @@ def get_dose_input():
 
 def calculate_doses():
   dose_files = []
+  print("1: DoseParFiles/Body_unshield.txt")
+  print("2: DoseParFiles/Body_shield.txt")
+  print("3: DoseParFiles/Skin_unshield.txt")
+  print("4: DoseParFiles/Skin_shield.txt")
+  print("5: DoseParFiles/Breath_Par.txt")
+
 
   # First dose calculation input
   print("Please choose which type of Dose you want to calculate:")
