@@ -1,5 +1,6 @@
 # DoseCal
----
+
+Calculate radiation dose of productions from fusion evaporation for the experiment security reports.
 
 
 ## Python Libraries Required
@@ -37,8 +38,8 @@ The following Python libraries are required to run the current code:
 2. Save PACE4 results in PACE4 folder with name formate: {beam_isotope}{beam_A}_{target_isotope}{target_A}_{beam_E}MeV. E.g. "Kr84_Al27_400MeV.pdf"
 
 ### Folder DoesParFiles:
-* Contain 5 txt files for "Body Unshield", "Body Shield", "Skin Unshield", "Skin Shield" and "Breath". <\br>
-* Value source from 2 PDF files also contained in this folder. <\br>
+* Contain 5 txt files for "Body Unshield", "Body Shield", "Skin Unshield", "Skin Shield" and "Breath". </br>
+* Value source from 2 PDF files also contained in this folder. </br>
 * Specific values for parameters (such as, distance and unit) marked at top in each file.
 * If extra parameters values needed, please generate txt file with same format "A" "Isotope" "DoesPar"
 
@@ -68,7 +69,7 @@ The following Python libraries are required to run the current code:
 ---
 
 
-## \*Generate Stopping ratios:
+## \*Generate Stopping ratios (TODO):
 Now, there is no convenient way to generate stopping ratios for all production isotopes, except SRIM which needs to calculate one by one.</br>
 Now assume all production will be stopped in the target (stopping_ratio = 1), returning higher radiation dose.</br>
 The stopping ratio is not considered in calculations in main.py, but will be generated in txt file which is returned after running main.py</br>
