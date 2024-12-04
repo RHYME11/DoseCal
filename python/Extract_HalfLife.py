@@ -1,7 +1,7 @@
 #=================== Step 3 =====================#                                                                                             
-# Read HalfLife.txt
+# Read HalfLife.dat
 # Extract t1/2 value and unit
-# If HalfLife.txt does not exist, please follow README
+# If HalfLife.dat does not exist, please follow README
 #================================================#
 
 import re
@@ -23,11 +23,11 @@ def parse_t_half(t_half):
   return t_value, t_unit
 
 
-# ============= Function to extract t1/2 from txt ==============#
+# ============= Function to extract t1/2 from dat ==============#
 # extracted_data = [A,"nucleus_name", t1/2, "unit"]
-def Extract_HalfLife(txt_path="HalfLife/HalfLife.txt"):
+def Extract_HalfLife(dat_path="HalfLife/HalfLife.dat"):
   # Open the existing TXT file and process it
-  with open(txt_path, "r") as input_file:
+  with open(dat_path, "r") as input_file:
     extracted_data = []
     # Skip the first line (header)
     next(input_file)

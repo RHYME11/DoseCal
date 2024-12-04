@@ -1,6 +1,6 @@
 #=============================================#
-# Convert Halflife pdf file to txt file
-# It won't over write on the existing txt file
+# Convert Halflife pdf file to dat file
+# It won't over write on the existing dat file
 #=============================================#
 
 from miniCodes import *
@@ -10,13 +10,13 @@ def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
     # Get the base name of the PDF file (without the extension) using string operations
     base_name = pdf_path.split('/')[-1].replace('.pdf', '')
     # Create the output TXT file name
-    txt_path = pdf_path.replace('.pdf', '.txt')
+    dat_path = pdf_path.replace('.pdf', '.dat')
     
-    # if txt file exists and don't need to be replaced, return empty
-    if os.path.exists(txt_path) and not flag_overwrite:
-      print("Keep the old HalfLife.txt. Bye ~")  
+    # if dat file exists and don't need to be replaced, return empty
+    if os.path.exists(dat_path) and not flag_overwrite:
+      print("Keep the old HalfLife.dat. Bye ~")  
       return
-    # if txt file doesn't exist or you want to overwrite it
+    # if dat file doesn't exist or you want to overwrite it
     else:
         # Open the PDF file
         with pdfplumber.open(pdf_path) as pdf:
@@ -50,8 +50,8 @@ def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
                     # Capture the text
                     if capture_text:
                         text_to_write.append(line)
-        # Write the captured text to the dynamically named txt file
-        with open(txt_path, "w") as output_file:
+        # Write the captured text to the dynamically named dat file
+        with open(dat_path, "w") as output_file:
           output_file.write("#Nucleus E_level Jpi t1/2\n")  
           output_file.write("\n".join(text_to_write))
 
@@ -59,9 +59,9 @@ def Convert_PDF_to_TXT(pdf_path, flag_overwrite = False):
 
 
 pdf_path = get_pdf_file_input("Enter half-life pdf file path: ")
-txt_path = pdf_path.replace('.pdf', '.txt')
-if os.path.exists(txt_path):
-  overwrite =input(f"{txt_path} exists. Do you want to overwrite it, y/n(default): ")
+dat_path = pdf_path.replace('.pdf', '.dat')
+if os.path.exists(dat_path):
+  overwrite =input(f"{dat_path} exists. Do you want to overwrite it, y/n(default): ")
   if 'y' in overwrite.lower():
     flag = True
   elif 'n' or '' in overwrite.lower():
