@@ -1,9 +1,0 @@
-
-
-.ipynb_checkpoints/
-__pycache__/
-Radiation_Safety_Cal
-.gitignore
-*.bak
-*.swp
-*.txt
