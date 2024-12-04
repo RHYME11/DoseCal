@@ -71,7 +71,7 @@ def get_pdf_file_input(prompt):
 # Check is input is an existing isotope
 # Separate A and Name for two inputs
 #=======================================#
-def check_isotope_exists(beam_A, beam_isotope, file_path='HalfLife/HalfLife.txt'):
+def check_isotope_exists(beam_A, beam_isotope, file_path='HalfLife/HalfLife.dat'):
     # Combine the values to create the desired isotope string
     isotope_to_check = f"{beam_A}{beam_isotope.lower()}"
 

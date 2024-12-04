@@ -6,11 +6,11 @@ import os
 def Does_Path(path_num):
   # Map input numbers to corresponding dose file paths
   dose_file_mapping = {
-    '1': "DoseParFiles/Body_unshield.txt",
-    '2': "DoseParFiles/Body_shield.txt",
-    '3': "DoseParFiles/Skin_unshield.txt",
-    '4': "DoseParFiles/Skin_shield.txt",
-    '5': "DoseParFiles/Breath_Par.txt"
+    '1': "DoseParFiles/Body_unshield.dat",
+    '2': "DoseParFiles/Body_shield.dat",
+    '3': "DoseParFiles/Skin_unshield.dat",
+    '4': "DoseParFiles/Skin_shield.dat",
+    '5': "DoseParFiles/Breath_Par.dat"
   }
   # Return the dose file path or an empty string if invalid input
   return dose_file_mapping.get(path_num, '')
@@ -26,11 +26,11 @@ def get_dose_input():
 
 def calculate_doses():
   dose_files = []
-  print("1: DoseParFiles/Body_unshield.txt")
-  print("2: DoseParFiles/Body_shield.txt")
-  print("3: DoseParFiles/Skin_unshield.txt")
-  print("4: DoseParFiles/Skin_shield.txt")
-  print("5: DoseParFiles/Breath_Par.txt")
+  print("1: DoseParFiles/Body_unshield.dat")
+  print("2: DoseParFiles/Body_shield.dat")
+  print("3: DoseParFiles/Skin_unshield.dat")
+  print("4: DoseParFiles/Skin_shield.dat")
+  print("5: DoseParFiles/Breath_Par.dat")
 
 
   # First dose calculation input
@@ -55,11 +55,11 @@ def calculate_doses():
 
   # Define the preferred order of files
   preferred_order = [
-    "DoseParFiles/Body_unshield.txt",
-    "DoseParFiles/Body_shield.txt",
-    "DoseParFiles/Skin_unshield.txt",
-    "DoseParFiles/Skin_shield.txt",
-    "DoseParFiles/Breath_Par.txt"
+    "DoseParFiles/Body_unshield.dat",
+    "DoseParFiles/Body_shield.dat",
+    "DoseParFiles/Skin_unshield.dat",
+    "DoseParFiles/Skin_shield.dat",
+    "DoseParFiles/Breath_Par.dat"
   ]
 
   # Sort dose_files based on the preferred order
